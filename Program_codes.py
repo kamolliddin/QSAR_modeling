@@ -3,7 +3,7 @@ data = pd.read_csv('features.txt', sep="\t", header=None)
 data['target'] = pd.read_csv('target.txt', sep="\t", header=None)
 
 Program Code 4.1 Deleting rows from the table where the target column is more than 6000
-Code from [1]: 6.Outliers Treatment 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 6.Outliers Treatment 
 data_train = data_train.drop(data_train[data_train.target>5599].index)
 data_train = data_train.drop(data_train[data_train.target<4000].index)
 data_train.reset_index(drop = True, inplace = True)
@@ -16,7 +16,7 @@ total_columns = np.count_nonzero(data_merged.isna().sum())
 data.dropna(axis=1, how='any', inplace=True)
 
 Program Code 6.1 Search for 10 most positively/negatively correlated features with the target
-Code from [1]: 9.Bivariate Analysis
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 9.Bivariate Analysis
 data_train = data[0:109]
 data_corr = data_train.corr()
 temp_df = data_corr['target'].sort_values(ascending = False)[:11]
@@ -29,7 +29,7 @@ data = data[[7,8,10,32,33,34,49,97,100,119,125,126,127,128,147,182,187,191,192,
 198,'target']]
 
 Program Code 7.1 Removal of features having correlation coefficients higher that 0.95 
-Code from [1]: 9.Bivariate Analysis
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 9.Bivariate Analysis
 corr = data.corr().abs()
 mask = np.triu(np.ones_like(corr, dtype=bool))
 tri = corr.mask(mask)
@@ -70,7 +70,7 @@ X = dataset.drop('target', axis=1)
 y = dataset['target']
 
 Program Code 10.1 Training models on training data and evaluating models on test data
-Code from [1]: 11.Model Building & Evaluation 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 11.Model Building & Evaluation 
 def rmse_score(model):
 model.fit(X_train, y_train)
 y_predict = model.predict(X_test)
@@ -88,7 +88,7 @@ x = rmse_scores_pd.index
 y = rmse_scores_pd['RMSE']
 
 Program Code 10.2 grid_search function for training and optimizing models
-Code from [1]: 11.Model Building & Evaluation 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 11.Model Building & Evaluation 
 def grid_search(model, params):
 global best_params, best_score
 grid_search = GridSearchCV(estimator = model,param_grid=params,cv = 10,
@@ -99,27 +99,27 @@ best_score = np.sqrt(-1*(np.round(grid_search.best_score_, 5)))
 return best_params, best_score
 
 Program Code 10.3 Optimization of Elastic Net model
-Code from [1]: 11.Model Building & Evaluation 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 11.Model Building & Evaluation 
 elastic_params={'alpha':[0.0003,0.00035,0.00045,0.0005], 
 'l1_ratio': [0.80, 0.85, 0.9, 0.95],'random_state':[state]}
 grid_search(elnt, elastic_params)
 elastic_best_params, elastic_best_score = best_params, best_score
 
 Program Code 10.4 Optimization of Kernel Ridge model
-Code from [1]: 11.Model Building & Evaluation 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 11.Model Building & Evaluation 
 ker-nel_params = {'alpha':[0.27, 0.28, 0.29, 0.3],'kernel':['polynomial', 'linear'],'degree':[2, 3],'coef0':[3.5, 4, 4.2]}
 grid_search(kr, kernel_params)
 kernel_best_params, kernel_best_score = best_params, best_score
 
 Program Code 10.5 Optimization of Ridge model
-Code from [1]: 11.Model Building & Evaluation 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 11.Model Building & Evaluation 
 ridge_params={'alpha':[9,9.2,9.4,9.5,9.52,9.54,9.56,9.58,9.6,9.62,9.64,9.66,9.68,
 9.7,9.8],'random_state':[state]}
 grid_search(ridge, ridge_params)
 ridge_best_params, ridge_best_score = best_params, best_score
 
 Program Code 10.6 Optimization of Lasso model
-Code from [1]: 11.Model Building & Evaluation 
+Code from https://www.kaggle.com/eraaz1/a-comprehensive-guide-to-advanced-regression: 11.Model Building & Evaluation 
 alpha = [0.0001, 0.0002, 0.00025, 0.0003, 0.00031, 0.00032, 0.00033, 0.00034, 
 0.00035, 0.00036, 0.00037, 0.00038, 0.0004, 0.00045, 0.0005, 0.00055, 0.0006, 
 0.0008,  0.001, 0.002,0.005, 0.007, 0.008, 0.01]
